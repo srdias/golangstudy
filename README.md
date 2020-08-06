@@ -1,8 +1,11 @@
 # golangstudy
 Projeto criado para compartilhar arquivos sobre os estudos da Golang
 
-### Instalação do GO:
+### Instalações:
 Area do site do Go para instalação: [Download](https://golang.org/doc/install). Eu estou usando maquina windows e usei a opção [MSI Installer](https://golang.org/dl/).
+Recomendo o uso do Visual Code. [Download](https://code.visualstudio.com/download#)
+
+[Apresentação obtido do slide share](https://pt.slideshare.net/suelengc/go-lang-52138194)
 
 ### Exemplos obtidos no site [gobyexample.com](https://gobyexample.com). Tem muito outros exemplos, destaquei alguns para fazer o nosso reconhecimento:
   - O tradicional ["Olá mundo"](https://gobyexample.com/hello-world)
