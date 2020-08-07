@@ -8,8 +8,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var selectStatement = "select * from golang.pessoas"
-
 func getenv(s string, d string) string {
 	v := os.Getenv(s)
 	if v != "" {
@@ -33,18 +31,39 @@ func main() {
 
 	defer db.Close()
 
-	err = selectAll(db)
-	if err != nil {
-		fmt.Printf("select error: %v\n", err)
-		return
-	}
+	fmt.Println("")
+	fmt.Println("Conteudo inicial:")
+	selectAll(db)
+
+	fmt.Println("")
+	fmt.Println("Inserindo alguns dados:")
+	insert(db, 1, "Maria")
+	insert(db, 2, "Pedro")
+	insert(db, 3, "Joaquim")
+	insert(db, 4, "Vicenti")
+	selectAll(db)
+
+	fmt.Println("")
+	fmt.Println("Alterando o nome da pessoa de codigo 2")
+	update(db, 2, "Bernardo")
+	selectAll(db)
+
+	fmt.Println("")
+	fmt.Println("Excluindo a pessoa de codigo 3")
+	delete(db, 3)
+	selectAll(db)
+
+	fmt.Println("")
+	fmt.Println("Apagando todos os dados da tabela")
+	deleteAll(db)
+	selectAll(db)
+
+	fmt.Println("")
+	fmt.Println("Fim!!")
+
 }
 
-func insert(db *sql.DB) {
-	var i_pessoas int
-	var nome string
-	i_pessoas = 1000
-	nome = "João"
+func insert(db *sql.DB, i_pessoas int, nome string) {
 	sqlStatement := "INSERT INTO golang.pessoas (i_pessoas, nome) VALUES ($1, $2)"
 	_, err := db.Exec(sqlStatement, i_pessoas, nome)
 	if err != nil {
@@ -52,12 +71,7 @@ func insert(db *sql.DB) {
 	}
 }
 
-func update(db *sql.DB) {
-	var i_pessoas int
-	var nome string
-	i_pessoas = 1000
-	nome = "Marcos"
-
+func update(db *sql.DB, i_pessoas int, nome string) {
 	sqlStatement := "UPDATE golang.pessoas SET nome=$2 where i_pessoas = $1"
 	_, err := db.Exec(sqlStatement, i_pessoas, nome)
 	if err != nil {
@@ -65,11 +79,17 @@ func update(db *sql.DB) {
 	}
 }
 
-func delete(db *sql.DB) {
-	var i_pessoas int
-	i_pessoas = 1000
+func delete(db *sql.DB, i_pessoas int) {
 	sqlStatement := "DELETE FROM golang.pessoas where i_pessoas = $1"
 	_, err := db.Exec(sqlStatement, i_pessoas)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func deleteAll(db *sql.DB) {
+	sqlStatement := "DELETE FROM golang.pessoas"
+	_, err := db.Exec(sqlStatement)
 	if err != nil {
 		panic(err)
 	}
@@ -79,7 +99,7 @@ func selectAll(db *sql.DB) error {
 	var stmt *sql.Stmt
 	var err error
 
-	stmt, err = db.Prepare(selectStatement)
+	stmt, err = db.Prepare("select * from golang.pessoas order by i_pessoas")
 	if err != nil {
 		fmt.Printf("db.Prepare error: %v\n", err)
 		return err
@@ -95,6 +115,7 @@ func selectAll(db *sql.DB) error {
 
 	defer stmt.Close()
 
+	count := 0
 	for rows.Next() {
 		var i_pessoas int
 		var nome string
@@ -105,7 +126,12 @@ func selectAll(db *sql.DB) error {
 			return err
 		}
 
+		count++
 		fmt.Printf("%02d. %v\n", i_pessoas, nome)
+	}
+
+	if count < 1 {
+		fmt.Println("Sem linhas para serem exibidas!")
 	}
 
 	return nil
