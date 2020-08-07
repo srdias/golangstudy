@@ -11,6 +11,7 @@ Na pasta raiz deste projeto, tem o docker-compose.yml que inicia um ambiente com
 O servidor do PG Admin é iniciado na porta 16543. Link: [http://localhost:16543/] (http://localhost:16543/). Usuário de acesso: **postgres**, senha: **admin**.
 
 #### Comando para iniciar os dockers:
+Precisa do docker instalado.
 ```
 docker-compose up -d
 ```
