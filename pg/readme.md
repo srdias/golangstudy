@@ -26,8 +26,8 @@ docker-compose up -d
         - Campo 'Username' informe 'postgres'
         - Campo 'Password' informe 'admin'
     - Clique no botão 'Save'
-
-Execute os comandos:
+4. Após esses passos, abrirá uma lista no estilo treeview. Abra os itens até o 4 nivel, em cima do nome do banco de dados 'postgres'. Use o botão do mouse para acessar a opção 'Query Tool...'
+5. Na caixa de comando, execute os comandos abaixo:
 ```
 CREATE SCHEMA golang;
 ALTER SCHEMA golang OWNER TO POSTGRES;
