@@ -17,4 +17,3 @@ O objetivo é fazer um projeto para testar o conhecimento adquirido. A ideia é 
 - [ ] Construir o servidor back-end com o Go
 - [ ] Construir o servidor front-end com o Go
 - [ ] Construir o projeto unificando o prendizado.
-    - [ ] Subir um ambiente docker

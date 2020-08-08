@@ -7,7 +7,7 @@ go get -u github.com/lib/pq
 
 ### Configurando o ambiente antes de executar o teste:
 
-Na pasta raiz deste projeto, tem o docker-compose.yml que inicia um ambiente com um servidor de banco de dados postgres e outro servidor com o PGAdmin.
+O arquivo docker-compose.yml inicia um ambiente com um servidor de banco de dados postgres e outro servidor com o PGAdmin.
 O servidor do PG Admin é iniciado na porta 16543. Link: [http://localhost:16543/] (http://localhost:16543/). Usuário de acesso: **postgres**, senha: **admin**.
 
 #### Comando para iniciar os dockers:
