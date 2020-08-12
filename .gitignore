@@ -1,3 +1,5 @@
 /gobyexamples.com/*.exe
 /gobyexamples.com/tmp/*
 outros/write-file-simples.txt
+outros/file-write-simples-2.txt
+outros/file-write-simples.txt
