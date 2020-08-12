@@ -1,5 +1,8 @@
 # Teste com acesso ao banco de dados Postgres
 
+### Pré-requisitos:
+Docker Desktop instalado. Link para a instalação: [https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/).
+
 ### Instalando o package lib/pq para permitir o acesso ao banco de dados postgres
 ```
 go get -u github.com/lib/pq
@@ -16,6 +19,7 @@ Precisa do docker instalado.
 ```
 docker-compose up -d
 ```
+OBS: Ao iniciar o docker o windows irá solicitar confirmação porque o docker-compose está utilizando compartilhamento de pastas entre windows e docker.
 
 #### Setup do banco de dados para executar o teste:
 1. Abrir o PG Admin conforme endereço/usuário/senha acima;
