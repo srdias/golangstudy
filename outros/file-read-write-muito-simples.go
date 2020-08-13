@@ -7,20 +7,21 @@ import (
 
 func main() {
 
-	b := []byte("Linha 1\nLinha 2\nLinha 3\n")
+	conteudoGravarByteArray := []byte("Linha 1\nLinha 2\nLinha 3\n")
 
 	// write the whole body at once
-	err := ioutil.WriteFile("file-write-simples-2.txt", b, 0644)
-	if err != nil {
-		panic(err)
+	errGravando := ioutil.WriteFile("file-write-simples.txt", conteudoGravarByteArray, 0644)
+	if errGravando != nil {
+		panic(errGravando)
 	}
 
 	// read the whole file at once
-	b, err = ioutil.ReadFile("file-write-simples.txt")
-	if err != nil {
-		panic(err)
+	conteudoLidoByteArray, errLeitura := ioutil.ReadFile("file-write-simples.txt")
+	if errLeitura != nil {
+		panic(errLeitura)
 	}
 
-	fmt.Printf("Conteudo lido:\n[%s]", b)
+	conteudoLidoString := string(conteudoLidoByteArray)
+	fmt.Printf("Conteudo lido:\n[%s]", conteudoLidoString)
 
 }
